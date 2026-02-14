@@ -1,0 +1,13 @@
+[project]
+name = "ai-code-generation-engineer"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "jupytext>=1.19.1",
+    "libcst>=1.8.6",
+]
+
+[tool.jupytext]
+formats = "ipynb,md:myst"
