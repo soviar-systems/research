@@ -22,7 +22,7 @@ By the end of this course, you will:
 
 ## Pedagogical Framework: Skeptical Mastery
 
-This course rejects passive learning. It is built on the principle of **Skeptical Pedagogy**:
+This course rejects passive learning. It is built on the principle of **Skeptical Pedagogy**: Assume the user has no correct understanding of a topic until they provide a rigorous demonstration of reasoning. "Mostly understanding" is insufficient for an AI Architect role and often masks critical gaps.
 
 **The Atomic Learning Objective (ALO):** An ALO is the smallest indivisible unit of a concept that can be independently validated through reasoning or implementation. Breaking complex topics into ALOs prevents cognitive overload and ensures no gaps in the foundational mental model.
 
@@ -31,13 +31,27 @@ This course rejects passive learning. It is built on the principle of **Skeptica
 3.  **One ALO per Session**: To prevent cognitive overload and shallow learning, each session focuses on exactly one **Atomic Learning Objective (ALO)**. A session ends once the ALO is mastered.
 4.  **Dynamic Calibration**: The mentor does not rely on a static "Intermediate" label. It calibrates your level incrementally by observing your reasoning process in each session.
 
+### Advanced Pedagogical Constraints
+
+- **System Prompt Maturation**: The mentor's governing rules are evolved manually. Observed failures in the `learning.log` are identified as patterns and converted into strict pedagogical rules in the system prompt to prevent recurrence.
+- **Prompt Simplicity & Instruction Budget**: To avoid "Agentic Friction" and the "Instruction-Scaling Tipping Point," the system prompt avoids complex programmatic protocols (e.g., FSMs, rigid JSON loops). It focuses on pedagogical goals, using simple human-readable anchors for state (e.g., Markdown session logs) rather than trying to force the LLM into a rigid programmatic state.
+    - *Note on FSMs*: A Finite State Machine (FSM) is a model where a system exists in one of a finite number of states and transitions between them based on inputs. In prompting, attempting to enforce a rigid FSM often leads the LLM to prioritize state-tracking over execution, causing "instruction decay."
+
 ### Administrative Notes
 - Each session is **~1 hour**.
 - **No deadlines**—progress is gated solely by verified understanding.
 - You must **demonstrate reasoning**, not just recall.
 - We use **one small step at a time**, with micro-validation.
 
-## Curriculum Structure: The Syllabus of ALOs
+## Implementation Philosophy: Validation Before Abstraction
+
+To ensure foundational clarity and avoid "over-architecting," this project adheres to the following coding principle:
+
+**Insist on code validation before abstraction.** 
+Encourage raw implementation (e.g., raw NumPy) to verify mathematical correctness and logic before introducing modular design, encapsulation, or library abstractions (e.g., PyTorch).
+
+**Why:** Abstractions can mask bugs in the underlying logic. By proving the math in its simplest form first, we ensure that the subsequent architecture is built on a verified foundation.
+
 
 The curriculum is not a timeline, but a map of **Atomic Learning Objectives (ALOs)** detailed in `syllabus.md`.
 
@@ -53,7 +67,7 @@ The curriculum is not a timeline, but a map of **Atomic Learning Objectives (ALO
 
 ## The Trinity of State Architecture
 
-To maintain absolute pedagogical continuity and avoid "Instruction Drift," the project decouples the mentor's state into three discrete components:
+To maintain absolute pedagogical continuity and avoid "Instruction Drift," the project decouples the mentor's state into three discrete components. This separates the **Control Plane** (management and state definitions) from the **Execution Plane** (code and notebook work).
 
 ### 1. The System Prompt (The Law)
 Stored in `mentor/system_prompt.json`. It defines the **how**: the persona, the skeptical rules, and the interaction protocols. It is a stable specification that does not change based on user progress.
@@ -66,6 +80,7 @@ Stored in `mentor/learning.log`. It defines the **what**: a permanent, append-on
 
 **Session Flow:**
 `Syllabus` $\rightarrow$ `Skeptical Session (One ALO)` $\rightarrow$ `Mastery Gate` $\rightarrow$ `Append Proof to learning.log` $\rightarrow$ `Next ALO`.
+
 
 ## Hardware Selection & Requirements
 
