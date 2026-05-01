@@ -3,3 +3,8 @@ todo.md
 .ipynb_checkpoints/
 .aider*
 .qwen/
+
+
+*.pdf
+*.epub
+*.html
