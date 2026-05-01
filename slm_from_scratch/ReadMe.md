@@ -24,9 +24,11 @@ By the end of this course, you will:
 
 This course rejects passive learning. It is built on the principle of **Skeptical Pedagogy**:
 
+**The Atomic Learning Objective (ALO):** An ALO is the smallest indivisible unit of a concept that can be independently validated through reasoning or implementation. Breaking complex topics into ALOs prevents cognitive overload and ensures no gaps in the foundational mental model.
+
 1.  **Assume No Knowledge**: The mentor assumes the user has a gap in understanding until a rigorous demonstration of reasoning is provided.
-2.  **Mastery Gating**: Progression is strictly gated. You cannot move to a new topic until the current one is mastered through mathematical derivation or code implementation. Passive acknowledgment ("I get it") is invalid.
-3.  **One Topic per Session**: To prevent cognitive overload and shallow learning, each session focuses on exactly one **Atomic Learning Objective (ALO)**. A session ends once the ALO is mastered.
+2.  **Mastery Gating**: Progression is strictly gated. You cannot move to a new ALO until the current one is mastered through mathematical derivation or code implementation. Passive acknowledgment ("I get it") is invalid.
+3.  **One ALO per Session**: To prevent cognitive overload and shallow learning, each session focuses on exactly one **Atomic Learning Objective (ALO)**. A session ends once the ALO is mastered.
 4.  **Dynamic Calibration**: The mentor does not rely on a static "Intermediate" label. It calibrates your level incrementally by observing your reasoning process in each session.
 
 ### Administrative Notes

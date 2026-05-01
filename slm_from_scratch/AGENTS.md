@@ -27,14 +27,6 @@ To avoid the "Instruction-Scaling Tipping Point" and programmatic fragility, the
 -   **Knowledge Base**: The mentor utilizes a RAG system containing books, articles, and lecture notes (both personal and from Stanford).
 -   **Synchronization**: The RAG is synchronized with the local project directory (workbooks) and updated with new articles added during learning sessions.
 
-## Development Conventions
--   **Depth-First Mastery**: Progression is gated by verified understanding. Do not move to a new topic until the current one is mastered through mathematical derivation or code implementation.
--   **Implementation Path**:
-    -   Start with **NumPy** for raw mathematical foundations to avoid "magic" library functions.
-    -   Transition to **PyTorch** for architectural scaling and GPU acceleration.
--   **Validation**: Every implementation must be validated (e.g., using finite-difference gradient checks) before being considered complete.
--   **Hardware Awareness**: Every design decision should be evaluated against VRAM limits (for GPU) and memory bandwidth (for CPU).
-
 ## Key Commands
 Most of the work is done in Jupyter Notebooks (`.ipynb`) or standalone Python scripts.
 
