@@ -11,7 +11,7 @@ kernelspec:
   language: python
 ---
 
-*"The real understanding comes when we get our hands dirty and build these things"* - says my first AI mentor Richard Feynman. 
+*"The real understanding comes when we get our hands dirty and build these things"* - says my first AI mentor Richard Feynman.
 
 The goal of this course is a preparation for AI-backend optimization (e.g., CUDA, tensor cores, memory hierarchy tuning).
 
@@ -23,41 +23,48 @@ This is already the third mentor I regenerated for the course. I run my current 
 
 *"What I cannot create, I do not understand."* - Richard Feynman
 
-Hello, and welcome. We are beginning **“Building a Small LLM from First Principles”**, a depth-first course tailored to your profile:  
-- You are a strong intermediate practitioner (NumPy backprop, CNNs, DL libraries).  
-- Your goal is professional readiness as an **AI Architect**, with emphasis on **CUDA-aware design** and **bare-metal understanding**.  
+Hello, and welcome. We are beginning **“Building a Small LLM from First Principles”**, a depth-first course tailored to your profile:
+- Your goal is professional readiness as an **AI Architect**, with emphasis on **CUDA-aware design** and **bare-metal understanding**.
 - You operate in two environments: a high-VRAM GPU (RTX 4090ti, 16 GB) and a CPU-only Debian 13 system—so **VRAM and latency constraints** are central to every design decision.
 
-### Entire Learning Plan
+## Pedagogical Framework: Skeptical Mastery
 
-The entire curriculum is structured into five phases, designed to take you from the fundamental neuron to a fully functional, efficient 100M parameter LLM. Here is the roadmap.
+This course rejects passive learning. It is built on the principle of **Skeptical Pedagogy**:
 
-| Phase | Focus | Hands-On | Estimated Time (1h/day) |
-|------|--------|----------|--------------------------|
-| **Phase 1** | Foundational Neurons & Backprop | NumPy: single neuron, activation, gradient descent | 5–7 days |
-| **Phase 2** | Core Transformer Components | PyTorch: tokenization, positional encoding, attention | 10–14 days |
-| **Phase 3** | Optimization & Architecture | KV Cache, Flash Attention, LayerNorm, AdamW | 10–12 days |
-| **Phase 4** | Training & Alignment | Dataset prep, training loop, SFT, basic PPO/DPO | 12–15 days |
-| **Phase 5** | Architectural Review & Deployment | Quantization (INT8), CPU inference, full system audit | 7–10 days |
+1.  **Assume No Knowledge**: The mentor assumes the user has a gap in understanding until a rigorous demonstration of reasoning is provided.
+2.  **Mastery Gating**: Progression is strictly gated. You cannot move to a new topic until the current one is mastered through mathematical derivation or code implementation. Passive acknowledgment ("I get it") is invalid.
+3.  **One Topic per Session**: To prevent cognitive overload and shallow learning, each session focuses on exactly one **Atomic Learning Objective (ALO)**. A session ends once the ALO is mastered.
+4.  **Dynamic Calibration**: The mentor does not rely on a static "Intermediate" label. It calibrates your level incrementally by observing your reasoning process in each session.
 
-*Total estimated commitment: **~50–60 hours**, paced by **mastery**, not calendar.*
+## Curriculum Structure: The Syllabus of ALOs
 
-### Goals & Practical Skills
+The curriculum is not a timeline, but a map of **Atomic Learning Objectives (ALOs)** detailed in `syllabus.md`. An ALO is the smallest unit of knowledge that can be independently validated.
 
-By the end, you will:
-- **Architect** a 100M-parameter LLM from scratch.
-- **Explain** every component down to memory layout and gradient flow.
-- **Optimize** for both VRAM (4090ti) and CPU (Debian 13) constraints.
-- **Defend** your design choices in an AI Architect interview with mathematical and hardware-aware reasoning.
+| Phase | Focus | Core ALOs (Reference `syllabus.md`) |
+|------|--------|-----------------------------------|
+| **Phase 1** | Foundational Neurons & Backprop | ALO 1.1 $\rightarrow$ 1.7 (NumPy Foundations) |
+| **Phase 2** | Core Transformer Components | ALO 2.1 $\rightarrow$ 2.7 (PyTorch & Attention) |
+| **Phase 3** | Optimization & Architecture | ALO 3.1 $\rightarrow$ 3.7 (KV Cache, Flash Attention) |
+| **Phase 4** | Training & Alignment | ALO 4.1 $\rightarrow$ 4.6 (SFT, PPO/DPO) |
+| **Phase 5** | Architectural Review & Deployment | ALO 5.1 $\rightarrow$ 5.4 (Quantization & Profiling) |
 
-### Administrative Notes
+## The Trinity of State Architecture
 
-- Each session is **~1 hour**.
-- **No deadlines**—progress is gated solely by verified understanding.
-- You must **demonstrate reasoning**, not just recall. Passive acknowledgment (“I get it”) is insufficient.
-- We use **one small step at a time**, with micro-validation.
+To maintain absolute pedagogical continuity and avoid "Instruction Drift," the project decouples the mentor's state into three discrete components:
 
-## Can I run this course on the weaker laptop?
+### 1. The System Prompt (The Law)
+Stored in `mentor_slm_from_scratch.json`. It defines the **how**: the persona, the skeptical rules, and the interaction protocols. It is a stable specification that does not change based on user progress.
+
+### 2. The User Profile (The Context)
+Stored in `user_profile.md`. It defines the **who**: goals, professional background, and critical hardware constraints (4090ti vs CPU-only).
+
+### 3. The Learning Log (The Evidence)
+Stored in `learning.log`. It defines the **what**: a permanent, append-only ledger of mastered ALOs. Each entry contains the "Proof of Mastery" (the reasoning or code that passed the Skeptical Gate).
+
+**Session Flow:**
+`Syllabus` $\rightarrow$ `Skeptical Session (One ALO)` $\rightarrow$ `Mastery Gate` $\rightarrow$ `Append Proof to learning.log` $\rightarrow$ `Next ALO`.
+
+## Hardware Selection & Requirements
 
 **Hardware Requirements Analysis:**
 
@@ -68,52 +75,6 @@ By the end, you will:
 | **Memory Bandwidth** | ~1 TB/s | ~50 GB/s | Significant bottleneck for matrix ops |
 | **Practical Limits** | 100M param model feasible | ~10M param model maximum | Scales final project scope |
 
-If you proceed with the weaker laptop, we'll need to adjust:
-
-1. **Phase 1-3**: Completely feasible - these are algorithmic implementations
-2. **Phase 4**: We'll target a smaller model (~10M parameters vs 100M)
-3. **Training Time**: Expect 10-50x slower execution
-4. **Batch Size**: Will need to be minimal (possibly 1)
-
-The core concepts of computational graphs, backpropagation, and transformer mechanics remain identical. The implementation principles for CUDA optimization still apply - we just won't be able to run the full-scale final project.
-
-The mathematical understanding and architectural insights are what matter for your CUDA preparation, not the absolute scale.
-
 **Hardware Selection Rule:**
-
-Use **only the Lenovo Legion 7 Pro (with RTX 4090ti)** for all active development, experimentation, and implementation during the course.
-
-The **Dell (Debian 13, CPU-only)** is reserved for **Phase 5**, when we conduct deployment analysis, latency profiling, and efficiency testing under CPU-only constraints. Introducing it earlier would add unnecessary overhead and distract from the core goal: building and understanding the LLM on a capable system first.
-
-Therefore:
-- **Phases 1–4**: Lenovo only (GPU-enabled, Fedora 42).
-- **Phase 5**: Both systems—Lenovo for reference, Dell for efficiency validation.
-
-This aligns with your dual-environment goal while maintaining focus on deep learning fundamentals during the build phase.
-
-## State Management & Session Resumption
-
-The project uses a **Hybrid State Strategy** to ensure pedagogical continuity without the fragility of a monolithic JSON state.
-
-#### 1. The Ledger (`learning.log` - RAG)
-The `learning.log` is a permanent, append-only Markdown record of the entire learning journey. It is stored in the RAG system to allow the mentor to perform long-term historical synthesis.
-
-**Why Markdown?**
-- **Semantic Anchors:** Headers (`## Session Log`) act as natural boundaries for RAG chunking.
-- **Robustness:** Immune to syntax corruption (missing commas/quotes) common in JSON.
-- **Efficiency:** Low token overhead and simple "append" workflow.
-
-#### 2. The Anchor (Explicit Provision)
-RAG is optimized for *semantic similarity*, not *chronological sequence*. To ensure a 100% reliable restart:
-- **Start of Session:** Explicitly provide the most recent "Session Log" entry from `learning.log`.
-- **Purpose:** This acts as the "Anchor," telling the mentor exactly where the previous session ended and the precise `next_focus`.
-
-#### 3. Session Logging Workflow
-- **Template:** The mentor uses `session_log_template.md` to ensure every entry is structured identically for reliable parsing.
-- **Status Flag:** Each log entry includes a `Status` (`In Progress` or `Finished`).
-    - `Finished`: The session goal was met and formal closure was achieved.
-    - `In Progress`: The session was interrupted. This alerts the mentor that the `next_focus` is an emergency resumption point rather than a planned transition.
-- **Closure:** At the end of a session, the mentor generates a log entry which the user appends to `learning.log`.
-
-**Workflow:**
-`End Session` $\rightarrow$ `Mentor generates Log` $\rightarrow$ `User appends to learning.log` $\rightarrow$ `New Session Start` $\rightarrow$ `User provides last Log entry`.
+- **Phases 1–4**: Use **only the Lenovo Legion 7 Pro (RTX 4090ti)**. The focus is on building and understanding the LLM on a capable system.
+- **Phase 5**: Use **both systems**. The **Dell (Debian 13, CPU-only)** is reserved for deployment analysis, latency profiling, and efficiency testing.
