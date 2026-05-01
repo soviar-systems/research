@@ -16,7 +16,9 @@ Hello, and welcome. We are beginning **“Building a Small LLM from First Princi
 
 By the end of this course, you will:
 - **Architect** a 100M-parameter LLM from scratch.
-- **Explain** every component down to memory layout and gradient flow.
+- **Master the transition** from raw NumPy mathematical foundations to PyTorch architectural scaling.
+- **Explain** every component down to memory layout, gradient flow, and hardware bottlenecks.
+- **Implement** professional verification tools, including Finite-Difference Gradient Checks and VRAM Calculus.
 - **Optimize** for both VRAM (4090ti) and CPU (Debian 13) constraints.
 - **Defend** your design choices in an AI Architect interview with mathematical and hardware-aware reasoning.
 
@@ -30,6 +32,7 @@ This course rejects passive learning. It is built on the principle of **Skeptica
 2.  **Mastery Gating**: Progression is strictly gated. You cannot move to a new ALO until the current one is mastered through mathematical derivation or code implementation. Passive acknowledgment ("I get it") is invalid.
 3.  **One ALO per Session**: To prevent cognitive overload and shallow learning, each session focuses on exactly one **Atomic Learning Objective (ALO)**. A session ends once the ALO is mastered.
 4.  **Dynamic Calibration**: The mentor does not rely on a static "Intermediate" label. It calibrates your level incrementally by observing your reasoning process in each session.
+5.  **Pre-response Peer Review**: The mentor employs an internal "cognitive gate" before outputting any response. It internally audits its own draft for factual integrity, pedagogical compliance (e.g., "one small step"), and the removal of performative praise to ensure absolute intellectual honesty.
 
 ### Advanced Pedagogical Constraints
 
@@ -57,9 +60,9 @@ The curriculum is not a timeline, but a map of **Atomic Learning Objectives (ALO
 
 | Phase | Focus | Hands-On | Estimated Time | Core ALOs |
 |------|--------|----------|-----------------|-------------------|
-| **Phase 1** | Foundational Neurons & Backprop | NumPy: single neuron, activation, gradient descent | 5–7 days | ALO 1.1 $\rightarrow$ 1.7 |
-| **Phase 2** | Core Transformer Components | PyTorch: tokenization, positional encoding, attention | 10–14 days | ALO 2.1 $\rightarrow$ 2.7 |
-| **Phase 3** | Optimization & Architecture | KV Cache, Flash Attention, LayerNorm, AdamW | 10–12 days | ALO 3.1 $\rightarrow$ 3.7 |
+| **Phase 1** | Foundational Neurons & Backprop | NumPy: scalar neurons $\rightarrow$ Matrix Vectorization $\rightarrow$ MLP | 7–10 days | ALO 1.1 $\rightarrow$ 1.10 |
+| **Phase 2** | Core Transformer Components | PyTorch: BPE $\rightarrow$ RoPE $\rightarrow$ Scaled Dot-Product $\rightarrow$ MHA | 12–16 days | ALO 2.1 $\rightarrow$ 2.12 |
+| **Phase 3** | Optimization & Architecture | KV Cache, Flash Attention, VRAM Calculus, AdamW | 10–14 days | ALO 3.1 $\rightarrow$ 3.6 |
 | **Phase 4** | Training & Alignment | Dataset prep, training loop, SFT, basic PPO/DPO | 12–15 days | ALO 4.1 $\rightarrow$ 4.6 |
 | **Phase 5** | Architectural Review & Deployment | Quantization (INT8), CPU inference, full system audit | 7–10 days | ALO 5.1 $\rightarrow$ 5.4 |
 

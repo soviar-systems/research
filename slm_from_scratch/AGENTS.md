@@ -7,11 +7,12 @@
 -   `01_foundational_neurons_and_backprop/`: Materials and implementations for Phase 1.
 -   `02_tokenizer/`: Materials and implementations for Phase 2 (including BPE tokenizer code).
 -   `data/`: Storage for datasets used during training.
--   `templates/`: Blueprints for onboarding new students (e.g., `user_profile_template.md`, `session_log_template.md`).
--   `mentor_slm_from_scratch.json`: **The Mentor System Prompt**. Defines the persona, pedagogical rules (anti-praise, one-small-step), and course structure.
--   `user_profile.md`: **The Context**. Defines the user's goals, hardware constraints, and professional background.
--   `learning.log`: **The Ledger**. A permanent, append-only Markdown record of mastered concepts and session history, used by the mentor via RAG.
--   `syllabus.md`: **The Map**. Detailed list of Atomic Learning Objectives (ALOs) for the course.
+-   `mentor/`: Core pedagogical control plane.
+    -   `system_prompt.json`: **The Mentor System Prompt**. Defines the persona, pedagogical rules, and course structure.
+    -   `user_profile.md`: **The Context**. Defines the user's goals, hardware constraints, and professional background.
+    -   `learning.log`: **The Ledger**. A permanent, append-only Markdown record of mastered concepts and session history.
+    -   `syllabus.md`: **The Map**. Detailed list of Atomic Learning Objectives (ALOs).
+    -   `templates/`: Blueprints for session logs and maintenance guides.
 -   `ReadMe.md` / `ReadMe.ipynb`: Course introduction and hardware requirements.
 
 ## Mentor & Learning Setup

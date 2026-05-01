@@ -1,49 +1,102 @@
-# SLM Syllabus: Atomic Learning Objectives (ALOs)
+# SLM From Scratch: The Master Syllabus
 
-This document serves as the structural map for the "Building a Small LLM from First Principles" course. Each entry is an Atomic Learning Objective (ALO)—the smallest unit of knowledge that must be rigorously validated before progression.
+This document is the absolute source of truth for the course progression. Each Atomic Learning Objective (ALO) must be verified through rigorous demonstration (math, code, or architectural reasoning) before proceeding.
+
+---
 
 ## Phase 1: Foundational Neurons & Backprop
-*Goal: Manual NumPy implementation of the smallest possible learning unit.*
-- [ ] **ALO 1.1: The Linear Neuron** - Mathematical representation of $z = wx + b$ and the concept of weights/biases.
-- [ ] **ALO 1.2: Activation Functions** - Mathematical derivation and purpose of Sigmoid, Tanh, and ReLU.
-- [ ] **ALO 1.3: Scalar Forward Pass** - Implementation of a single neuron forward pass in NumPy.
-- [ ] **ALO 1.4: The Chain Rule** - Mathematical understanding of how gradients propagate backward through nested functions.
-- [ ] **ALO 1.5: Scalar Backward Pass** - Manual derivation and NumPy implementation of the gradient for a single neuron.
-- [ ] **ALO 1.6: Gradient Descent Update** - Implementation of the weight update rule $\theta = \theta - \eta \nabla J(\theta)$.
-- [ ] **ALO 1.7: Convergence & Loss** - Understanding Mean Squared Error (MSE) and the concept of reaching a local minimum.
+**Goal:** Understand the physics of learning. Move from a single mathematical operation to a multi-layer network using only NumPy.
 
-## Phase 2: Core Transformer Components
-*Goal: Transition to PyTorch and implement the building blocks of the Attention mechanism.*
-- [ ] **ALO 2.1: BPE Tokenization** - Mathematical and algorithmic understanding of Byte Pair Encoding.
-- [ ] **ALO 2.2: Embedding Spaces** - Representation of tokens as vectors and the purpose of the embedding matrix.
-- [ ] **ALO 2.3: Positional Encoding** - Mathematical implementation of Absolute and Rotary (RoPE) positional embeddings.
-- [ ] **ALO 2.4: QKV Projection** - Understanding the linear transformations that create Query, Key, and Value vectors.
-- [ ] **ALO 2.5: Scaled Dot-Product Attention** - Mathematical derivation and implementation of the core attention formula.
-- [ ] **ALO 2.6: Multi-Head Attention (MHA)** - Parallelizing attention heads and the final linear projection.
-- [ ] **ALO 2.7: Feed-Forward Network (FFN)** - The role of the position-wise MLP in the transformer block.
+### Stage 1.1: The Single Neuron
+- **ALO 1.1:** The Linear Sum: Implement $\sum (w_i x_i) + b$ and explain the geometric meaning of weights and bias.
+- **ALO 1.2:** Activation Functions: Implement Sigmoid, ReLU, and Tanh. Manually derive their derivatives on paper.
+- **ALO 1.3:** Forward Pass: Implement a single neuron forward pass in NumPy.
+
+### Stage 1.2: The Mechanics of Backprop
+- **ALO 1.4:** The Chain Rule: Manually derive the gradient of the loss with respect to weights for a single neuron.
+- **ALO 1.5:** NumPy Backprop: Implement the backward pass for a single neuron.
+- **ALO 1.6:** Gradient Descent: Implement the weight update rule and explain the impact of the learning rate.
+- **ALO 1.7:** Finite-Difference Check: Implement a gradient checker to verify the analytical gradient against numerical approximation.
+
+### Stage 1.3: The Bridge (MLP in NumPy)
+- **ALO 1.8:** Matrix Vectorization: Transition from loops to matrix multiplications ($\mathbf{Wx} + \mathbf{b}$).
+- **ALO 1.9:** Multi-Layer Perceptron (MLP): Implement a 2-layer network in NumPy.
+- **ALO 1.10:** Layered Backprop: Implement backpropagation through multiple layers, maintaining the Jacobian chain.
+
+---
+
+## Phase 2: Core Components of the Transformer
+**Goal:** Deconstruct the "Attention is All You Need" architecture. Move from raw math to PyTorch modules.
+
+### Stage 2.1: Tokenization & Embeddings
+- **ALO 2.1:** Tokenization Theory: Compare Character-level, Word-level, and Subword (BPE/WordPiece) tokenization.
+- **ALO 2.2:** BPE Implementation: Implement a basic Byte Pair Encoding (BPE) tokenizer from scratch.
+- **ALO 2.3:** Embedding Spaces: Implement a trainable embedding layer and explain high-dimensional vector representation.
+- **ALO 2.4:** Positional Encoding: Implement Absolute Positional Embeddings and explain why Transformers need them.
+- **ALO 2.5:** RoPE: Implement Rotary Positional Embeddings and explain the rotation matrix logic.
+
+### Stage 2.2: The Attention Mechanism
+- **ALO 2.6:** QKV Math: Implement the calculation of Query, Key, and Value matrices.
+- **ALO 2.7:** Scaled Dot-Product Attention: Implement $\text{softmax}(\frac{QK^T}{\sqrt{d_k}})V$ and explain the scaling factor $\sqrt{d_k}$.
+- **ALO 2.8:** Causal Masking: Implement the look-ahead mask for decoder-only models.
+- **ALO 2.9:** Multi-Head Attention (MHA): Implement MHA and analyze the $O(n^2)$ time and space complexity.
+
+### Stage 2.3: PyTorch Transition
+- **ALO 2.10:** PyTorch Tensors: Map NumPy operations to PyTorch tensors and CUDA device movement.
+- **ALO 2.11:** Autograd: Compare manual NumPy backprop with `loss.backward()` in PyTorch.
+- **ALO 2.12:** Attention Block: Implement a full MHA block as a `torch.nn.Module`.
+
+---
 
 ## Phase 3: Optimization & Architecture
-*Goal: Moving from a naive transformer to a production-ready architecture.*
-- [ ] **ALO 3.1: LayerNorm & RMSNorm** - Mathematical understanding of normalization and its effect on training stability.
-- [ ] **ALO 3.2: Residual Connections** - The "highway" for gradients and the mitigation of the vanishing gradient problem.
-- [ ] **ALO 3.3: KV Cache (Conceptual)** - Understanding why we cache Keys and Values during auto-regressive generation.
-- [ ] **ALO 3.4: KV Cache (Implementation)** - Modifying the attention block to support incremental decoding.
-- [ ] **ALO 3.5: Flash Attention (Conceptual)** - Understanding IO-awareness and the reduction of memory reads/writes.
-- [ ] **ALO 3.6: AdamW Optimizer** - Mathematical difference between SGD and AdamW (weight decay).
-- [ ] **ALO 3.7: Learning Rate Schedulers** - Implementation of Warmup and Cosine Decay.
+**Goal:** Optimize for memory and speed. Understand the gap between "mathematically correct" and "computationally efficient."
+
+### Stage 3.1: Structural Refinements
+- **ALO 3.1:** LayerNorm: Implement Layer Normalization and explain why it is preferred over BatchNorm for NLP.
+- **ALO 3.2:** Feed-Forward Networks (FFN): Implement the position-wise FFN and explain its role as a "knowledge store."
+- **ALO 3.3:** Residual Connections: Implement skip-connections and explain their role in solving the vanishing gradient problem.
+
+### Stage 3.2: Memory & Inference Optimization
+- **ALO 3.4:** The KV Cache: Implement the KV cache mechanism and prove the inference speedup.
+- **ALO 3.5:** Flash Attention Theory: Explain the Tiling approach and the trade-off between HBM (High Bandwidth Memory) and SRAM.
+- **ALO 3.6:** VRAM Calculus: Calculate the exact VRAM requirement for a model given: parameters, optimizer states (AdamW), and activation tensors.
+
+### Stage 3.3: Optimizer Dynamics
+- **ALO 3.7:** AdamW: Implement or analyze the AdamW update rule, specifically the decoupled weight decay.
+- **ALO 3.8:** Learning Rate Scheduling: Implement Cosine Decay with Warm-up and explain its necessity for stability.
+
+---
 
 ## Phase 4: Training & Alignment
-*Goal: Scaling the model to 100M parameters and aligning it with user intent.*
-- [ ] **ALO 4.1: Data Pipeline** - Tokenizing large corpora, shuffling, and creating efficient PyTorch DataLoaders.
-- [ ] **ALO 4.2: The Training Loop** - Implementing the outer loop (epochs) and inner loop (batches) with gradient clipping.
-- [ ] **ALO 4.3: Cross-Entropy Loss** - Understanding the mathematical objective of next-token prediction.
-- [ ] **ALO 4.4: Supervised Fine-Tuning (SFT)** - Transitioning from base model to an instruction-following model.
-- [ ] **ALO 4.5: RLHF/PPO Basics** - Understanding the Reward Model and the PPO objective function.
-- [ ] **ALO 4.6: DPO (Direct Preference Optimization)** - Implementing alignment without a separate reward model.
+**Goal:** Scale the model. Move from a block to a 100M parameter model trained on real data.
+
+### Stage 4.1: Data Theory & Preparation
+- **ALO 4.1:** Pre-training Corpora: Analyze the requirements for a pre-training dataset (diversity, scale, cleaning).
+- **ALO 4.2:** SFT Datasets: Design an instruction-tuning dataset and explain the difference between "completion" and "instruction" data.
+- **ALO 4.3:** Data Pipeline: Implement a high-performance PyTorch DataLoader with sharding.
+
+### Stage 4.2: The Training Loop
+- **ALO 4.4:** Loss Functions: Implement Cross-Entropy loss and explain the role of the softmax temperature.
+- **ALO 4.5:** Evaluation Metrics: Implement and explain Perplexity (PPL) and Cross-Entropy as measures of model quality.
+- **ALO 4.6:** Training Loop: Implement a full training loop (using PyTorch Lightning or native PyTorch) with gradient clipping.
+
+### Stage 4.3: Efficiency & Alignment
+- **ALO 4.7:** Parameter Efficiency: Implement LoRA (Low-Rank Adaptation) and explain the $A \times B$ matrix decomposition.
+- **ALO 4.8:** Alignment Concepts: Explain the conceptual flow of SFT $\rightarrow$ Reward Modeling $\rightarrow$ PPO/DPO.
+- **ALO 4.9:** The 100M Model: Execute the training of a 100M parameter model and analyze the loss curve.
+
+---
 
 ## Phase 5: Architectural Review & Deployment
-*Goal: Optimizing for the target hardware and defending the design.*
-- [ ] **ALO 5.1: INT8 Quantization** - Mathematical principles of mapping FP32 weights to 8-bit integers.
-- [ ] **ALO 5.2: Memory Footprint Analysis** - Calculating VRAM usage for weights, gradients, and KV Cache.
-- [ ] **ALO 5.3: CPU Inference Profiling** - Analyzing latency and bottlenecks on the Debian 13 system.
-- [ ] **ALO 5.4: Final Architectural Defense** - A comprehensive review justifying every design choice against hardware constraints.
+**Goal:** Professionalize the system. Validate the model's efficiency across different hardware targets.
+
+### Stage 5.1: The Full Trace
+- **ALO 5.1:** Bare-Metal Trace: Trace a single token from input $\rightarrow$ tokenizer $\rightarrow$ embeddings $\rightarrow$ N layers $\rightarrow$ LM head $\rightarrow$ output.
+- **ALO 5.2:** Sampling Strategies: Implement Top-k, Top-p (nucleus), and Temperature sampling.
+
+### Stage 5.2: Quantization & Efficiency
+- **ALO 5.3:** Quantization Theory: Explain the mapping from FP32 $\rightarrow$ FP16 $\rightarrow$ INT8.
+- **ALO 5.4:** CPU vs GPU: Analyze the memory bandwidth bottleneck on CPU and implement a basic CPU-optimized inference path.
+
+### Stage 5.3: Final Defense
+- **ALO 5.5:** Architectural Defense: Provide a rigorous justification for every design choice (e.g., "Why RoPE over Absolute?", "Why AdamW over SGD?") against the specific hardware constraints of the target system.
