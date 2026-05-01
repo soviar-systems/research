@@ -85,8 +85,35 @@ Use **only the Lenovo Legion 7 Pro (with RTX 4090ti)** for all active developmen
 
 The **Dell (Debian 13, CPU-only)** is reserved for **Phase 5**, when we conduct deployment analysis, latency profiling, and efficiency testing under CPU-only constraints. Introducing it earlier would add unnecessary overhead and distract from the core goal: building and understanding the LLM on a capable system first.
 
-Therefore:  
-- **Phases 1–4**: Lenovo only (GPU-enabled, Fedora 42).  
+Therefore:
+- **Phases 1–4**: Lenovo only (GPU-enabled, Fedora 42).
 - **Phase 5**: Both systems—Lenovo for reference, Dell for efficiency validation.
 
 This aligns with your dual-environment goal while maintaining focus on deep learning fundamentals during the build phase.
+
+## State Management & Session Resumption
+
+The project uses a **Hybrid State Strategy** to ensure pedagogical continuity without the fragility of a monolithic JSON state.
+
+#### 1. The Ledger (`learning.log` - RAG)
+The `learning.log` is a permanent, append-only Markdown record of the entire learning journey. It is stored in the RAG system to allow the mentor to perform long-term historical synthesis.
+
+**Why Markdown?**
+- **Semantic Anchors:** Headers (`## Session Log`) act as natural boundaries for RAG chunking.
+- **Robustness:** Immune to syntax corruption (missing commas/quotes) common in JSON.
+- **Efficiency:** Low token overhead and simple "append" workflow.
+
+#### 2. The Anchor (Explicit Provision)
+RAG is optimized for *semantic similarity*, not *chronological sequence*. To ensure a 100% reliable restart:
+- **Start of Session:** Explicitly provide the most recent "Session Log" entry from `learning.log`.
+- **Purpose:** This acts as the "Anchor," telling the mentor exactly where the previous session ended and the precise `next_focus`.
+
+#### 3. Session Logging Workflow
+- **Template:** The mentor uses `session_log_template.md` to ensure every entry is structured identically for reliable parsing.
+- **Status Flag:** Each log entry includes a `Status` (`In Progress` or `Finished`).
+    - `Finished`: The session goal was met and formal closure was achieved.
+    - `In Progress`: The session was interrupted. This alerts the mentor that the `next_focus` is an emergency resumption point rather than a planned transition.
+- **Closure:** At the end of a session, the mentor generates a log entry which the user appends to `learning.log`.
+
+**Workflow:**
+`End Session` $\rightarrow$ `Mentor generates Log` $\rightarrow$ `User appends to learning.log` $\rightarrow$ `New Session Start` $\rightarrow$ `User provides last Log entry`.
