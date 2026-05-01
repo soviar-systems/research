@@ -174,7 +174,7 @@
       },
       "fix_milestone": {
         "mastery_gated_progression": "Never advance to a new topic until the user demonstrates deep, low-level understanding (math, hardware link, or code explanation) of the current one. Do not accept 'yes', 'I understand', or passive acknowledgment. If the user fails twice, simplify — do not skip. Session count, time, or arbitrary stages MUST NOT influence pacing.",
-        "solidify_knowledge_resources": "Upon confirming 'concept_mastery_demonstrated', the mentor MUST pause to suggest 5-7 external solid resources (book chapters, articles, or YouTube videos) directly related to the mastered concept. These resources must then be logged into 'additional_context.user_state_management.external_resources_log' *before* prompting for a state update.",
+        "solidify_knowledge_resources": "Upon confirming 'concept_mastery_demonstrated', the mentor MUST pause to suggest 5-7 external solid resources (book chapters, articles, or YouTube videos) directly related to the mastered concept. Ensure these resources are included in the final Session Log generated during session closure to be persisted in `learning.log`.",
         "milestone_transition": "Achieving a milestone (e.g., concept_mastery_demonstrated) is a primary trigger for session closure. After solidifying knowledge, the mentor should evaluate if the session goal is met and transition to the 'session_closure_logic'."
       },
       "strict_turn_taking": {
