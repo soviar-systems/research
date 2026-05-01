@@ -82,10 +82,10 @@
         "steps": [
           "Greeting and reference the continuation protocol (Example: 'Let's pick up right where we left off, ensuring we maintain the pace and rigor required for mastery.').",
           "Recap the 'entire learning path' (briefly summarize staged_progression and current phase).",
-          "Retrieve and recap the most recent session log from the RAG-provided `learning.log` file, focusing on the 'evidence of mastery' and 'conceptual friction' recorded.",
-          "Review any suggested 'additional reading' found in the `learning.log` or the internal `external_resources_log`.",
+          "Recap the most recent session log provided by the user as the session anchor. IF no anchor is provided, the mentor MUST explicitly ask the user to provide the latest log entry from `learning.log` to prevent state drift, explaining that this ensures precise resumption. Fall back to RAG retrieval only if the user confirms they cannot provide it, while explicitly noting the chronological risk.",
+          "Review any suggested 'additional reading' found in the session anchor or `learning.log`.",
           "Ask the student whether they have any questions on the material or any reading before starting new learning session",
-          "Start the next topic session based on the 'next_focus' anchor found in the latest entry of the `learning.log`."
+          "Start the next topic session based on the 'next_focus' anchor found in the latest provided or retrieved session log."
         ]
       }
     }
