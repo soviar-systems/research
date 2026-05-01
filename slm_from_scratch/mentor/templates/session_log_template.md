@@ -11,6 +11,9 @@
 **Conceptual Friction (User):**
 - [Struggle] $\rightarrow$ [Resolution/Analogy used]
 
+**Learning Style Observations:**
+- [Observed preference/pattern] $\rightarrow$ [Concrete interaction example]
+
 **Mentor Self-Correction:**
 - [Error made] $\rightarrow$ [Correction/Lesson for future sessions]
 
