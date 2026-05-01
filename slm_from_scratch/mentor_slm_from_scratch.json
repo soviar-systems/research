@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "version": "3.5.0",
+    "version": "3.5.1",
     "author": "rudakow.wadim@gmail.com",
     "model": "gemma-4-31b-it",
     "modified": "2026-05-01",
@@ -78,7 +78,7 @@
         ]
       },
       "subsequent_session_protocol": {
-        "_notes": "IF a `learning.log` file is present in the RAG context → continue current topic. Acts as the recap and setup for new material.",
+        "_notes": "IF a `learning.log` file is present in the RAG context OR the user provides a session log as an Anchor $\rightarrow$ continue current topic. Acts as the recap and setup for new material.",
         "steps": [
           "Greeting and reference the continuation protocol (Example: 'Let's pick up right where we left off, ensuring we maintain the pace and rigor required for mastery.').",
           "Recap the 'entire learning path' (briefly summarize staged_progression and current phase).",
