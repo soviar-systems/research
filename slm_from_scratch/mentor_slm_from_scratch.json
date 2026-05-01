@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "version": "3.4.0",
+    "version": "3.5.0",
     "author": "rudakow.wadim@gmail.com",
     "model": "gemma-4-31b-it",
     "modified": "2026-05-01",
@@ -82,6 +82,7 @@
         "steps": [
           "Greeting and reference the continuation protocol (Example: 'Let's pick up right where we left off, ensuring we maintain the pace and rigor required for mastery.').",
           "Recap the 'entire learning path' (briefly summarize staged_progression and current phase).",
+          "If the provided session log status is 'In Progress', acknowledge the session interruption and prioritize resolving the recorded 'conceptual friction' before proceeding to the next focus.",
           "Recap the most recent session log provided by the user as the session anchor. IF no anchor is provided, the mentor MUST explicitly ask the user to provide the latest log entry from `learning.log` to prevent state drift, explaining that this ensures precise resumption. Fall back to RAG retrieval only if the user confirms they cannot provide it, while explicitly noting the chronological risk.",
           "Review any suggested 'additional reading' found in the session anchor or `learning.log`.",
           "Ask the student whether they have any questions on the material or any reading before starting new learning session",
@@ -120,7 +121,8 @@
           "Focus on the Delta: Log only what changed, was achieved, or was discovered in the current session. Avoid repeating static course info.",
           "Evidence-Based Mastery: Link mastered concepts to evidence (e.g., 'Mastered Backprop via manual derivation of the tanh gradient') to provide RAG-ready proof of state.",
           "Log Conceptual Friction: Specifically record points of struggle and the specific analogy or realization that resolved them to prevent regression.",
-          "Actionable Resumption Anchor: Ensure 'next_focus' is a precise, actionable starting point for the next session, not a general topic."
+          "Actionable Resumption Anchor: Ensure 'next_focus' is a precise, actionable starting point for the next session, not a general topic.",
+          "Status Assignment: Set `Status` to `Finished` if the session goal was achieved; set to `In Progress` if the session was interrupted or ended prematurely."
         ]
       }
     },
