@@ -18,6 +18,3 @@
 
 ### Efficiency Principles
 - [Key focus areas, e.g., VRAM management, latency optimization]
-
-### Study Constraints
-- **Time Input:** [e.g., 1 hour/day, no deadline]

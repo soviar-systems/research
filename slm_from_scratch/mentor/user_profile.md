@@ -19,6 +19,3 @@
 
 ### Efficiency Principles
 - Focus on algorithms working within constraints, specifically VRAM management (GPU) and latency (CPU).
-
-### Study Constraints
-- **Daily Cognitive Budget:** Medium (approx. 2-3 micro-concepts per session)
