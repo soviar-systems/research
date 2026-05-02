@@ -23,7 +23,7 @@ This document is the absolute source of truth for the course progression. Each A
 ### Phase 1: The Physics of Retrieval
 **Stage 1.1: Vector Spaces**
 - **ALO 1.1:** The Embedding Function: Explain the transformation of text into a high-dimensional vector and the concept of "semantic space."
-- **ALO 1.2:** Cosine Similarity: Manually calculate the distance between two vectors and explain why it's used over Euclidean distance for text.
+- **ALO 1.2:** Cosine Similarity: Manually calculate the distance using the dot product formula, explain why magnitude is ignored, and why it's used over Euclidean distance for text.
 - **ALO 1.3:** The "Vibe" Problem: Demonstrate a case where two sentences are semantically "close" but factually contradictory.
 
 **Stage 1.2: The Naive RAG Failure**
@@ -32,7 +32,7 @@ This document is the absolute source of truth for the course progression. Each A
 
 ### Phase 2: Structural Retrieval
 **Stage 2.1: Advanced Chunking**
-- **ALO 2.1:** Recursive Character Splitting: Implement a splitter that respects structural boundaries (paragraphs, sections) rather than just token counts.
+- **ALO 2.1:** Recursive & Semantic Chunking: Implement a splitter that respects structural boundaries (paragraphs, sections) and explore splitting based on embedding gradients (semantic boundaries).
 - **ALO 2.2:** Overlap Strategy: Prove how sliding window overlap prevents information loss at chunk boundaries.
 
 **Stage 2.2: Parent-Document Retrieval (PDR)**
@@ -42,11 +42,15 @@ This document is the absolute source of truth for the course progression. Each A
 ### Phase 3: The Precision Layer
 **Stage 3.1: Hybrid Search**
 - **ALO 3.1:** BM25 Explained: Implement basic keyword search and explain why it's superior for exact technical terms (e.g., formula names).
-- **ALO 3.2:** Reciprocal Rank Fusion (RRF): Implement a method to combine Vector and BM25 results into a single, ranked list.
+- **ALO 3.2:** Reciprocal Rank Fusion (RRF): Manually calculate RRF scores for a small set of results and implement the method to combine Vector and BM25 results into a single, ranked list.
 
 **Stage 3.2: Reranking**
 - **ALO 3.3:** Bi-Encoders vs. Cross-Encoders: Explain the architectural difference and why Cross-Encoders are significantly more accurate but slower.
 - **ALO 3.4:** The Reranking Pipeline: Implement a two-stage process: (Fast Retrieval $\rightarrow$ Slow Reranking $\rightarrow$ Final Top-K).
+
+**Stage 3.3: Retrieval Optimization**
+- **ALO 3.5:** Metadata Filtering: Implement "hard filters" (e.g., versioning, categories) to constrain the search space before semantic retrieval.
+- **ALO 3.6:** Query Transformation: Implement "Self-Query" or "Rewrite-Retrieve-Read" patterns to refine vague user queries into precise search terms.
 
 ### Phase 4: Open WebUI Integration
 **Stage 4.1: Configuration**
@@ -63,12 +67,13 @@ This document is the absolute source of truth for the course progression. Each A
 
 **Stage 5.2: The Hallucination Loop**
 - **ALO 5.3:** Ground Truth Testing: Create a "Golden Dataset" of Q&A pairs to benchmark the Precision Engine.
+- **ALO 5.4:** Performance Audit: Analyze the trade-off between Latency and Accuracy, specifically measuring the overhead introduced by Cross-Encoders.
 
 ---
 
 ## # ALO Specifications
 *Proof of Mastery requirements.*
 
-- **Mathematical Proof**: Required for ALO 1.2, 3.1.
-- **Implementation Proof**: Required for ALO 2.1, 2.3, 3.2, 4.2.
-- **Architectural Reasoning**: Required for ALO 1.3, 1.5, 3.3, 5.1.
+- **Mathematical Proof**: Required for ALO 1.2, 3.1, 3.2.
+- **Implementation Proof**: Required for ALO 2.1, 2.3, 3.2, 3.5, 3.6, 4.2.
+- **Architectural Reasoning**: Required for ALO 1.3, 1.5, 3.3, 5.1, 5.4.
