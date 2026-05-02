@@ -4,6 +4,25 @@ This document is the absolute source of truth for the course progression. Each A
 
 ---
 
+## # Prerequisites
+*The baseline knowledge required to engage with the course. If these are not mastered, the student is encouraged to refine them before starting Phase 1.*
+
+### Mathematics
+- **Linear Algebra:** Matrix-vector multiplication, transposes, dot products, and the geometric interpretation of weights/bias as hyperplanes.
+- **Calculus:** Proficiency with derivatives and absolute mastery of the **Chain Rule** (critical for ALO 1.4).
+- **Probability:** Basic understanding of probability distributions and the concept of Entropy/Cross-Entropy.
+
+### Programming & Implementation
+- **Python:** Intermediate/Advanced proficiency (OOP, type hinting, efficient data structures).
+- **NumPy:** Mastery of vectorization and broadcasting (essential for the "NumPy-first" philosophy).
+- **Complexity Analysis:** Ability to perform Big O analysis on time and space complexity.
+
+### Computer Systems (Recommended)
+- **Hardware:** Conceptual understanding of CPU vs. GPU architecture and the role of VRAM.
+- **Memory:** Basic knowledge of memory bandwidth and latency.
+
+---
+
 ## # Executive Roadmap
 *High-level orientation for the student and mentor.*
 
