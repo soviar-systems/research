@@ -9,11 +9,12 @@ This document is the absolute source of truth for the course progression. Each A
 
 | Phase & Title | Primary Goal | Estimated Time |
 |----------------|---------------|-----------------|
-| Phase 1: The Physics of Retrieval | Understand the mathematical foundations of embeddings and the fundamental failure modes of Naive RAG. | 3-5 days |
+| Phase 1: The Physics of Retrieval | Understand tokenization, the mathematical foundations of embeddings, and the failure modes of Naive RAG. | 3-5 days |
 | Phase 2: Structural Retrieval | Solve the fragmentation problem using hierarchical chunking and Parent-Document Retrieval. | 5-7 days |
 | Phase 3: The Precision Layer | Eliminate semantic noise using Hybrid Search (BM25) and Cross-Encoder Reranking. | 5-7 days |
 | Phase 4: Open WebUI Integration | Implement the Precision Engine in a real-world environment and optimize top-k. | 3-5 days |
 | Phase 5: The Guardrail Audit | Establish metrics for Faithfulness and Relevance to eliminate hallucinations. | 3-5 days |
+| Phase 6: Domain Adaptation | Optimize the embedding engine via synthetic data and fine-tuning. | 3-5 days |
 
 ---
 
@@ -21,6 +22,10 @@ This document is the absolute source of truth for the course progression. Each A
 *The exhaustive, flat list of every ALO. This section is a fixed asset for mirroring.*
 
 ### Phase 1: The Physics of Retrieval
+**Stage 1.0: The Tokenization Layer**
+- **ALO 1.0.1:** The Token-to-Word Ratio: Calculate the ratio on a technical corpus to prove "shredding" (over-tokenization) of domain terms.
+- **ALO 1.0.2:** The "Shredding" Problem: Explain how fragmented tokens degrade semantic density and affect embedding quality.
+
 **Stage 1.1: Vector Spaces**
 - **ALO 1.1:** The Embedding Function: Explain the transformation of text into a high-dimensional vector and the concept of "semantic space."
 - **ALO 1.2:** Cosine Similarity: Manually calculate the distance using the dot product formula, explain why magnitude is ignored, and why it's used over Euclidean distance for text.
@@ -69,11 +74,19 @@ This document is the absolute source of truth for the course progression. Each A
 - **ALO 5.3:** Ground Truth Testing: Create a "Golden Dataset" of Q&A pairs to benchmark the Precision Engine.
 - **ALO 5.4:** Performance Audit: Analyze the trade-off between Latency and Accuracy, specifically measuring the overhead introduced by Cross-Encoders.
 
+### Phase 6: Domain Adaptation
+**Stage 6.1: Synthetic Data Generation**
+- **ALO 6.1:** Teacher-Student Distillation: Use a frontier model (e.g., GPT-4) to generate high-fidelity $\text{Query} \leftrightarrow \text{Document}$ pairs from the technical corpus.
+
+**Stage 6.2: Embedding Fine-Tuning**
+- **ALO 6.2:** Ranking Loss: Implement Multiple Negatives Ranking Loss (MNRL) and explain why it's superior to standard contrastive loss for retrieval.
+- **ALO 6.3:** Domain Evaluation: Benchmark the fine-tuned model against the base model using MRR (Mean Reciprocal Rank).
+
 ---
 
 ## # ALO Specifications
 *Proof of Mastery requirements.*
 
-- **Mathematical Proof**: Required for ALO 1.2, 3.1, 3.2.
-- **Implementation Proof**: Required for ALO 2.1, 2.3, 3.2, 3.5, 3.6, 4.2.
-- **Architectural Reasoning**: Required for ALO 1.3, 1.5, 3.3, 5.1, 5.4.
+- **Mathematical Proof**: Required for ALO 1.2, 3.1, 3.2, 6.2.
+- **Implementation Proof**: Required for ALO 1.0.1, 2.1, 2.3, 3.2, 3.5, 3.6, 4.2, 6.1.
+- **Architectural Reasoning**: Required for ALO 1.0.2, 1.3, 1.5, 3.3, 5.1, 5.4.

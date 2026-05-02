@@ -18,11 +18,12 @@ This course follows the **Skeptical Mastery** approach:
 
 | Phase | Focus | Goal |
 |---|---|---|
-| **Phase 1** | The Physics of Retrieval | Master Vector Spaces, Embeddings, and the "Fragment Problem." |
+| **Phase 1** | The Physics of Retrieval | Master Tokenization, Vector Spaces, Embeddings, and the "Fragment Problem." |
 | **Phase 2** | Structural Retrieval | Implement Parent-Document Retrieval and Recursive Chunking. |
 | **Phase 3** | The Precision Layer | Integrate Hybrid Search (BM25) and Cross-Encoder Reranking. |
 | **Phase 4** | Open WebUI Integration | Deploy the Precision Engine into a production environment. |
 | **Phase 5** | The Guardrail Audit | Build a verification loop for Faithfulness and Relevance. |
+| **Phase 6** | Domain Adaptation | Optimize the embedding engine via synthetic data and fine-tuning. |
 
 ## Hardware Context
 - **Primary**: RTX 4090ti (16GB VRAM) - used for embedding and reranking models.
