@@ -11,7 +11,7 @@
     -   `system_prompt.json`: **The Mentor System Prompt**. Defines the persona, pedagogical rules, and course structure.
     -   `user_profile.md`: **The Context**. Defines the user's goals, hardware constraints, and professional background.
     -   `learning.log`: **The Ledger**. A permanent, append-only Markdown record of mastered concepts and session history.
-    -   `syllabus.md`: **The Map**. Detailed list of Atomic Learning Objectives (ALOs).
+    -   `syllabus.md`: **The Textbook Source of Truth**. Contains the Executive Roadmap, Detailed Curriculum, and ALO Specifications.
     -   `templates/`: Blueprints for session logs and maintenance guides.
 -   `ReadMe.md` / `ReadMe.ipynb`: Course introduction and hardware requirements.
 
