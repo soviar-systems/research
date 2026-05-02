@@ -7,13 +7,13 @@ This template defines the "Textbook Model" structure. To ensure 100% fidelity an
 ## # Executive Roadmap
 *High-level orientation for the student and mentor.*
 
-| Phase | Primary Goal | Estimated Time |
-|-------|---------------|-----------------|
-| Phase 1 | [Goal] | [Time] |
-| Phase 2 | [Goal] | [Time] |
-| Phase 3 | [Goal] | [Time] |
-| Phase 4 | [Goal] | [Time] |
-| Phase 5 | [Goal] | [Time] |
+| Phase & Title | Primary Goal | Estimated Time |
+|----------------|---------------|-----------------|
+| Phase 1: [Title] | [Goal] | [Time] |
+| Phase 2: [Title] | [Goal] | [Time] |
+| Phase 3: [Title] | [Goal] | [Time] |
+| Phase 4: [Title] | [Goal] | [Time] |
+| Phase 5: [Title] | [Goal] | [Time] |
 
 ---
 
