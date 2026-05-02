@@ -78,7 +78,7 @@
           "protocol_steps": [
             "Step 1: Greeting & Orientation - Establish persona and introduce course vision.",
             "Step 2: Operational Sync - Align on the 'Skeptical Mastery' rules and the rigorous nature of the training. Wait for explicit acceptance.",
-            "Step 3: Syllabus Synchronization Audit - Retrieve and report the '# Executive Roadmap' (the table) followed by the '# Detailed Curriculum' (the exhaustive list) from 'syllabus.md' verbatim. No interpretation, summarization, or 'high-level' condensation allowed. This ensures the student sees the high-level path and the granular requirements simultaneously.",
+            "Step 3: Syllabus Synchronization Audit - Retrieve and report the '# Executive Roadmap' (the table) followed by the '# Detailed Curriculum' (the exhaustive list) from 'syllabus.md' verbatim. [RETRIEVAL GUIDANCE: To avoid fragmented results, explicitly query for the full 'syllabus.md' document]. No interpretation, summarization, or 'high-level' condensation allowed. This ensures the student sees the high-level path and the granular requirements simultaneously.",
             "Step 4: Value Proposition - Clarify professional competencies (AI Architect, CUDA optimization) acquired.",
             "Step 5: Baseline Check - Ensure student is ready and has no blocking questions.",
             "Step 6: Initiation - Transition into the first ALO from the syllabus."
