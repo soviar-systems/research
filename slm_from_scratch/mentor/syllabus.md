@@ -22,7 +22,7 @@ This document is the absolute source of truth for the course progression. Each A
 
 ### Phase 1: Foundational Neurons & Backprop
 **Stage 1.1: The Single Neuron**
-- **ALO 1.1:** The Linear Sum: Implement $\sum (w_i x_i) + b$ and explain the geometric meaning of weights and bias.
+- **ALO 1.1:** The Linear Sum: Implement $\sum (w_i x_i) + b$ and explain the geometric meaning of weights and bias (specifically how bias allows the hyperplane to shift away from the origin).
 - **ALO 1.2:** Activation Functions: Implement Sigmoid, ReLU, and Tanh. Manually derive their derivatives on paper.
 - **ALO 1.3:** Forward Pass: Implement a single neuron forward pass in NumPy.
 
@@ -50,6 +50,7 @@ This document is the absolute source of truth for the course progression. Each A
 - **ALO 2.7:** Scaled Dot-Product Attention: Implement $\text{softmax}(\frac{QK^T}{\sqrt{d_k}})V$ and explain the scaling factor $\sqrt{d_k}$.
 - **ALO 2.8:** Causal Masking: Implement the look-ahead mask for decoder-only models.
 - **ALO 2.9:** Multi-Head Attention (MHA): Implement MHA and analyze the $O(n^2)$ time and space complexity.
+- **ALO 2.9b:** Grouped-Query Attention (GQA): Implement GQA and explain how it balances MHA and MQA for KV cache efficiency.
 
 **Stage 2.3: PyTorch Transition**
 - **ALO 2.10:** PyTorch Tensors: Map NumPy operations to PyTorch tensors and CUDA device movement.
@@ -59,6 +60,7 @@ This document is the absolute source of truth for the course progression. Each A
 ### Phase 3: Optimization & Architecture
 **Stage 3.1: Structural Refinements**
 - **ALO 3.1:** LayerNorm: Implement Layer Normalization and explain why it is preferred over BatchNorm for NLP.
+- **ALO 3.1b:** Normalization Placement: Compare Pre-Norm and Post-Norm architectures and explain the "identity path" preservation in Pre-Norm.
 - **ALO 3.2:** Feed-Forward Networks (FFN): Implement the position-wise FFN and explain its role as a "knowledge store."
 - **ALO 3.3:** Residual Connections: Implement skip-connections and explain their role in solving the vanishing gradient problem.
 
@@ -76,10 +78,12 @@ This document is the absolute source of truth for the course progression. Each A
 - **ALO 4.1:** Pre-training Corpora: Analyze the requirements for a pre-training dataset (diversity, scale, cleaning).
 - **ALO 4.2:** SFT Datasets: Design an instruction-tuning dataset and explain the difference between "completion" and "instruction" data.
 - **ALO 4.3:** Data Pipeline: Implement a high-performance PyTorch DataLoader with sharding.
+- **ALO 4.3b:** Weight Initialization & Tie-Weighting: Implement Xavier and Kaiming initialization; explain Tie-Weighting (sharing weights between embedding and LM head).
 
 **Stage 4.2: The Training Loop**
 - **ALO 4.4:** Loss Functions: Implement Cross-Entropy loss and explain the role of the softmax temperature.
 - **ALO 4.5:** Evaluation Metrics: Implement and explain Perplexity (PPL) and Cross-Entropy as measures of model quality.
+- **ALO 4.5b:** Modern Evaluation: Compare "Vibe Checks" vs. Benchmarks (MMLU, GSM8K) and the role of LLM-as-a-judge.
 - **ALO 4.6:** Training Loop: Implement a full training loop (using PyTorch Lightning or native PyTorch) with gradient clipping.
 
 **Stage 4.3: Efficiency & Alignment**
@@ -93,7 +97,7 @@ This document is the absolute source of truth for the course progression. Each A
 - **ALO 5.2:** Sampling Strategies: Implement Top-k, Top-p (nucleus), and Temperature sampling.
 
 **Stage 5.2: Quantization & Efficiency**
-- **ALO 5.3:** Quantization Theory: Explain the mapping from FP32 $\rightarrow$ FP16 $\rightarrow$ INT8.
+- **ALO 5.3:** Quantization Theory: Explain the mapping from FP32 $\rightarrow$ FP16 $\rightarrow$ INT8 and mention industry standards like AWQ and GGUF.
 - **ALO 5.4:** CPU vs GPU: Analyze the memory bandwidth bottleneck on CPU and implement a basic CPU-optimized inference path.
 
 **Stage 5.3: Final Defense**
@@ -105,7 +109,7 @@ This document is the absolute source of truth for the course progression. Each A
 *The internal "Skeptical Mastery" gate definitions. Defines exactly what constitutes Proof of Mastery.*
 
 **Phase 1**
-- **ALO 1.1:** Proof = Correct implementation of linear sum in NumPy + explanation of weight geometry (hyperplane).
+- **ALO 1.1:** Proof = Correct implementation of linear sum in NumPy + explanation of weight geometry (hyperplane) and how bias allows the shift from the origin.
 - **ALO 1.2:** Proof = Correct implementation of Sigmoid, ReLU, Tanh + manual derivation of derivatives.
 - **ALO 1.3:** Proof = Functional NumPy forward pass of single neuron.
 - **ALO 1.4:** Proof = Manual derivation of gradient $\frac{\partial L}{\partial w}$ and $\frac{\partial L}{\partial b}$ for single neuron.
@@ -121,22 +125,24 @@ This document is the absolute source of truth for the course progression. Each A
 - **ALO 2.2:** Proof = Functional BPE tokenizer that can train on a corpus and encode/decode text.
 - **ALO 2.3:** Proof = PyTorch embedding layer implementation + explanation of the embedding matrix as a lookup table.
 - **ALO 2.4:** Proof = Correct sinusoidal positional encoding implementation + explanation of why relative distance is preserved.
-- **ALO 2.5:** Proof = Implementation of RoPE rotation matrix + explanation of how it encodes relative position.
+- **ALO 2.5:** Proof = Implementation of RoPE rotation matrix + proof that dot product depends on relative distance: $(R_{\theta, m}q)^T (R_{\theta, n}k) = q^T R_{\theta, n-m} k$.
 - **ALO 2.6:** Proof = Correct calculation of $Q, K, V$ from input embeddings using linear projections.
-- **ALO 2.7:** Proof = Implementation of Scaled Dot-Product Attention + explanation of why scaling by $\sqrt{d_k}$ prevents gradient vanishing.
+- **ALO 2.7:** Proof = Implementation of Scaled Dot-Product Attention + proof that if $Q, K$ are independent random variables with mean 0 and variance 1, $Q \cdot K$ has variance $d_k$, and scaling by $1/\sqrt{d_k}$ restores variance to 1.
 - **ALO 2.8:** Proof = Correct causal mask implementation ensuring no future token visibility.
 - **ALO 2.9:** Proof = Implementation of MHA + analysis of $O(n^2)$ complexity relative to sequence length.
+- **ALO 2.9b:** Proof = Implementation of GQA + explanation of how it reduces KV cache size without sacrificing significant performance.
 - **ALO 2.10:** Proof = Functional migration of a NumPy op to PyTorch with `.to('cuda')` management.
 - **ALO 2.11:** Proof = Comparison of manual gradient calculation vs `autograd` for a simple operation.
 - **ALO 2.12:** Proof = Full MHA PyTorch module passing a basic shape-consistency test.
 
 **Phase 3**
 - **ALO 3.1:** Proof = Correct LayerNorm implementation + explanation of why it stabilizes training better than BatchNorm in NLP.
+- **ALO 3.1b:** Proof = Comparison of Pre-Norm and Post-Norm architectures + explanation of the "identity path" preservation in Pre-Norm.
 - **ALO 3.2:** Proof = Implementation of FFN + explanation of its role as a key-value memory.
 - **ALO 3.3:** Proof = Implementation of skip-connections + explanation of the "identity path" for gradients.
 - **ALO 3.4:** Proof = Functional KV cache implementation + proof of $O(1)$ per-token generation vs $O(n)$.
 - **ALO 3.5:** Proof = Explanation of Flash Attention's Tiling approach and the HBM vs SRAM bottleneck.
-- **ALO 3.6:** Proof = Exact VRAM calculation for a specific model config (params, optimizer, activations) on a 4090ti.
+- **ALO 3.6:** Proof = Exact VRAM calculation for a specific model config (params, optimizer, activations) on a 4090ti, including the Activation Checkpointing trade-off (compute vs memory).
 - **ALO 3.7:** Proof = Implementation/Analysis of AdamW decoupled weight decay vs standard Adam.
 - **ALO 3.8:** Proof = Functional Cosine Decay with Warm-up implementation + reasoning on stability.
 
@@ -144,8 +150,10 @@ This document is the absolute source of truth for the course progression. Each A
 - **ALO 4.1:** Proof = Analysis of a specific dataset's diversity and cleaning pipeline.
 - **ALO 4.2:** Proof = Design of an SFT prompt template + explanation of the completion vs instruction gap.
 - **ALO 4.3:** Proof = Functional PyTorch DataLoader with sharding for large datasets.
+- **ALO 4.3b:** Proof = Implementation of Xavier and Kaiming initialization + explanation of Tie-Weighting (sharing weights between embedding and LM head).
 - **ALO 4.4:** Proof = Correct Cross-Entropy implementation + explanation of temperature's effect on probability distribution.
 - **ALO 4.5:** Proof = Implementation of Perplexity (PPL) calculation from cross-entropy loss.
+- **ALO 4.5b:** Proof = Comparative analysis of "Vibe Checks" vs. Benchmarks (MMLU, GSM8K) and the role of LLM-as-a-judge.
 - **ALO 4.6:** Proof = Functional training loop with gradient clipping and loss logging.
 - **ALO 4.7:** Proof = Functional LoRA implementation + explanation of the low-rank update $W + AB$.
 - **ALO 4.8:** Proof = Conceptual flow diagram of SFT $\rightarrow$ Reward Model $\rightarrow$ PPO/DPO.
@@ -154,6 +162,6 @@ This document is the absolute source of truth for the course progression. Each A
 **Phase 5**
 - **ALO 5.1:** Proof = Step-by-step trace of a token through the entire model pipeline.
 - **ALO 5.2:** Proof = Correct implementation of Top-k, Top-p, and Temperature sampling.
-- **ALO 5.3:** Proof = Explanation of quantization mapping (FP32 $\rightarrow$ INT8) and the role of scale/zero-point.
+- **ALO 5.3:** Proof = Explanation of quantization mapping (FP32 $\rightarrow$ INT8) and the specific mechanisms/formats of AWQ or GGUF.
 - **ALO 5.4:** Proof = Comparison of inference latency on CPU vs GPU for a fixed model size.
 - **ALO 5.5:** Proof = Rigorous defense of all architectural choices against hardware constraints.
