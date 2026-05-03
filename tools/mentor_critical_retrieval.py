@@ -36,12 +36,14 @@ class Tools:
         if not filename or not isinstance(filename, str):
             return "Error: A valid filename string must be provided."
         
-        if not self.valves.project_root:
-            return "Error: project_root Valve is not configured. Please set it in the tool settings."
+        # Open WebUI injects valves as an attribute. Handle case where it might be missing.
+        valves = getattr(self, 'valves', None)
+        if not valves or not valves.project_root:
+            return "Error: project_root Valve is not configured. Please set it in the Open WebUI tool settings."
 
         # CONTRACT: Path Isolation (prevent directory traversal)
         safe_filename = os.path.basename(filename)
-        root_path = Path(self.valves.project_root).resolve()
+        root_path = Path(valves.project_root).resolve()
         
         # Define search priority tiers
         # Tier 1: Root
@@ -86,10 +88,15 @@ class Tools:
     def _read_file_safely(self, path: Path) -> str:
         """Internal helper to handle file reading and encoding."""
         try:
+            # Open WebUI injects valves as an attribute. Handle case where it might be missing.
+            valves = getattr(self, 'valves', None)
+            if not valves or not valves.project_root:
+                return "Error: valves configuration missing during file read."
+
             # Ensure we are still within the root path (final safety check)
-            if not str(path.resolve()).startswith(str(Path(self.valves.project_root).resolve())):
+            if not str(path.resolve()).startswith(str(Path(valves.project_root).resolve())):
                 return "Security Error: Attempted to read file outside of project root."
-                
+
             return path.read_text(encoding='utf-8')
         except UnicodeDecodeError:
             return f"Error: File at {path} is not a valid UTF-8 text file."
