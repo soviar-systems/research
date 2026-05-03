@@ -44,7 +44,7 @@ This tool is configured for a **single project root** via its Valve. If you are 
 
 1.  **Duplicate the Tool**: Upload the `critical_retrieval.py` file multiple times with different names (e.g., `slm_retrieval.py`, `book_retrieval.py`).
 2.  **Specific Configuration**: Configure the `project_root` Valve for each tool to point to its respective project directory.
-3.  **Scoped Assignment**: 
+3.  **Scoped Assignment**:
     *   Assign the `slm_retrieval` tool only to the **SLM Mentor** model.
     *   Assign the `book_retrieval` tool only to the **Book Architect** model.
     *   Or, assign them to specific **Folders/Collections** in Open WebUI.
@@ -53,6 +53,29 @@ This ensures that the agent always retrieves the `syllabus.md` from the project 
 
 ### 🔒 Security Note
 
-To prevent leaking your local file system structure to public repositories (e.g., GitHub), the tool does **not** hardcode your file paths. 
+To prevent leaking your local file system structure to public repositories (e.g., GitHub), the tool does **not** hardcode your file paths.
 
 The absolute path is stored exclusively in the Open WebUI database via the `project_root` Valve. Never add your absolute paths directly into the `.py` file before committing.
+
+## 🐳 Infrastructure & Determinism: Podman/Docker and SELinux
+
+If you are running Open WebUI in a container (e.g., via `podman run` or `docker run`), the tools are executed within the container's filesystem (`/app/backend`), not directly on your host. This creates a filesystem isolation gap.
+
+### 1. Volume Mounting (The Visibility Gap)
+To allow the tool to see your host files, you **must** mount the project root into the container. To avoid configuration churn, mount the host path to the identical path inside the container.
+
+**Example (Podman/Docker CLI):**
+```bash
+podman run -v /path/to/your/project:/path/to/your/project:Z ...
+```
+
+### 2. SELinux Labeling (The Permission Gap)
+On systems with SELinux enabled (e.g., Fedora, RHEL), a successful mount is not enough. You will encounter `[Errno 13] Permission denied` because the container process is not authorized to access the host's security labels.
+
+**The Fix:** Use the `:Z` flag in your volume mapping to automatically relabel the files for container access. This is critical for Podman users on Fedora/RHEL.
+
+**Correct Mount Flag:**
+`-v /path/to/host:/path/to/container:Z`
+
+### 3. The "Binary Gate" Protocol
+The Mentor is configured with a **Binary Gate**. If the deterministic retrieval tool fails to find the syllabus or profile (due to misconfiguration or mount failure), the Mentor is **forbidden** from falling back to RAG or internal training data. It will report a `[RETRIEVAL BREACH]` and halt, ensuring 100% fidelity to the course map.
