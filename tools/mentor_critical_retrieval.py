@@ -39,7 +39,7 @@ class Tools:
         # Open WebUI injects valves as an attribute. Handle case where it might be missing.
         valves = getattr(self, 'valves', None)
         if not valves or not valves.project_root:
-            return "Error: project_root Valve is not configured. Please set it in the Open WebUI tool settings."
+            return "Reason: project_root Valve is not configured. Action: Please set the project_root in Open WebUI tool settings."
 
         # CONTRACT: Path Isolation (prevent directory traversal)
         safe_filename = os.path.basename(filename)
@@ -83,7 +83,7 @@ class Tools:
         except Exception as e:
             return f"Error during recursive search: {str(e)}"
 
-        return f"Error: Critical mentor file '{safe_filename}' not found in root, mentor/, docs/, or via filtered recursive search."
+        return f"Reason: Critical mentor file '{safe_filename}' not found. Action: Verify the file exists in the project root or mentor/ directory."
 
     def _read_file_safely(self, path: Path) -> str:
         """Internal helper to handle file reading and encoding."""
@@ -91,11 +91,11 @@ class Tools:
             # Open WebUI injects valves as an attribute. Handle case where it might be missing.
             valves = getattr(self, 'valves', None)
             if not valves or not valves.project_root:
-                return "Error: valves configuration missing during file read."
+                return "Reason: valves configuration missing during file read. Action: Configure tool valves."
 
             # Ensure we are still within the root path (final safety check)
             if not str(path.resolve()).startswith(str(Path(valves.project_root).resolve())):
-                return "Security Error: Attempted to read file outside of project root."
+                return "Reason: Security breach - attempted to read outside project root. Action: Halt immediately."
 
             return path.read_text(encoding='utf-8')
         except UnicodeDecodeError:
