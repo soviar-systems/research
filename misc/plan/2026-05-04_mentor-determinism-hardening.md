@@ -15,22 +15,40 @@
 ### Task 1: The Source of Truth (The Reality)
 
 **Files:**
-- Create: `/home/commi/Yandex.Disk/it_working/projects/soviar-systems/research/slm_from_scratch/mentor/manifest.json`
+- Create: `../../../mentor_generator/templates/mentor_core/manifest.json`
 
 - [ ] **Step 1: Create Manifest File**
-  Create a JSON file mapping authorized critical assets to their purpose.
+  Create a JSON file mapping authorized critical assets to their purpose. 
+  
+  ⚠️ **CRITICAL NOTE:** The following list is a **Proposed Taxonomy**. It must be carefully reviewed and discussed to ensure all necessary mentor artifacts are covered without introducing security risks. **Do not treat this as a final specification until architectural sign-off.**
+
   ```json
   {
-    "syllabus.md": "Full course map, including prerequisites, roadmap, and ALO specs.",
-    "user_profile.md": "User identity, professional goals, and hardware constraints.",
-    "learning.log": "Append-only ledger of mastered ALOs and proof of reasoning."
+    "core": {
+      "syllabus.md": "Full course map, including prerequisites, roadmap, and ALO specs.",
+      "user_profile.md": "User identity, professional goals, and hardware constraints (Evolvable).",
+      "mentor_failures.md": "Distilled ledger of past mistakes to avoid."
+    },
+    "progress": {
+      "learning.log": "Append-only ledger of mastered ALOs and proof of reasoning.",
+      "course_history": "Raw history of all learning sessions."
+    },
+    "mastery": {
+      "ALOS/phase_1.md": "Deterministic verification criteria for Phase 1.",
+      "ALOS/phase_2.md": "Deterministic verification criteria for Phase 2.",
+      "ALOS/phase_3.md": "Deterministic verification criteria for Phase 3."
+    },
+    "verification": {
+      "submissions/": "Authorized directory for student code submissions and exercise artifacts."
+    }
   }
   ```
+  *Note: For the tool implementation, the manifest will be flattened or traversed to validate the requested filename.*
 
 ### Task 2: The Communication Protocol (The Law)
 
 **Files:**
-- Modify: `/home/commi/Yandex.Disk/it_working/projects/soviar-systems/research/slm_from_scratch/mentor/system_prompt.json`
+- Modify: `../../slm_from_scratch/mentor/system_prompt.json`
 
 - [ ] **Step 1: Implement Protocol-Based Constraints**
   1. Increment `metadata.version` from `3.8.6` to `3.9.0`.
@@ -45,10 +63,10 @@
 ### Task 3: Manifest-Driven Guardrails (The Enforcer)
 
 **Files:**
-- Modify: `/home/commi/Yandex.Disk/it_working/projects/soviar-systems/research/tools/mentor_critical_retrieval.py`
+- Modify: `../../tools/mentor_critical_retrieval.py`
 
 - [ ] **Step 1: Implement Runtime Manifest Loading**
-  Update the tool to load `manifest.json` from the mentor's directory at runtime. Implement a minimal hardcoded fallback list in case the file is missing or corrupted.
+  Update the tool to load `manifest.json` from the Blueprint Unit (`mentor_generator/templates/mentor_core/`) at runtime. Implement a minimal hardcoded fallback list in case the file is missing or corrupted.
 
 - [ ] **Step 2: Implement "Loop-Back" Directive Logic**
   Update `get_mentor_critical_file`. If the requested `filename` is not in the loaded manifest:

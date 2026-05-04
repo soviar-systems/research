@@ -32,6 +32,16 @@ The research is divided into three primary tracks, each with its own mentor-led 
 
 ## 🌿 Project Organization & Workflow
 
+### Repository Relationship
+This research hub is conceptually and structurally linked to the `mentor_generator` repository:
+- **Architectural Source:** `../mentor_generator` is the authoritative architectural repository for the Mentor system, containing the "Law" (ADRs, blueprints, generation logic, and system tools).
+- **Artifacts Hub:** The `/research` directory serves as the repository for the resulting artifacts (curricula, student logs, and specific track implementations) generated and managed by that architecture.
+
+**Crucial: Tooling Location**
+Any deterministic tools used by the mentors (e.g., `mentor_critical_retrieval.py`) are now centrally managed in `../mentor_generator/apps/web/tools/`. 
+- **Context:** These are specifically **Open WebUI Tools**, designed to be uploaded to the Open WebUI platform and configured via "Valves." 
+- **Runtime:** They execute within the Open WebUI container environment, not as standalone scripts on the host. Do not recreate them here; refer to the source in the generator repository.
+
 ### Branch-Based Development
 The project uses a prefixed branching strategy to isolate the development of different research tracks:
 - `rag/*` $\rightarrow$ Retrieval-Augmented Generation research (e.g., `rag/brand-new-course`).
