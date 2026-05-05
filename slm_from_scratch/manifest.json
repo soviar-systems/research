@@ -1,0 +1,50 @@
+{
+  "assets": {
+    "course_map_role": {
+      "file": "mentor/syllabus.md",
+      "description": "Full course map, including prerequisites, roadmap, and ALO specs."
+    },
+    "user_profile_role": {
+      "file": "mentor/user_profile.md",
+      "description": "User identity, professional goals, and hardware constraints (Evolvable)."
+    },
+    "failure_ledger_role": {
+      "file": "mentor/failure_ledger.md",
+      "description": "Distilled ledger of past mistakes to avoid."
+    },
+    "progress_ledger_role": {
+      "file": "mentor/learning_log.md",
+      "description": "Append-only ledger of mastered ALOs and proof of reasoning."
+    },
+    "course_history_role": {
+      "file": "mentor/course_history.md",
+      "description": "Raw history of all learning sessions."
+    },
+    "closure_template_role": {
+      "file": "mentor/learning_log_closure.md",
+      "description": "Operational blueprint for session closure and log generation."
+    },
+    "session_initiation_role": {
+      "file": "mentor/session_initiation.md",
+      "description": "Operational blueprint for session startup and agenda locking."
+    },
+    "alo_verification_role": {
+      "file": "mentor/alo_verification.md",
+      "description": "Deterministic protocol for mastery gating and evidence audit."
+    },
+    "friction_telemetry_role": {
+      "file": "mentor/friction_telemetry.md",
+      "description": "Structured schema for recording conceptual friction as telemetry."
+    }
+  },
+  "authorized_directories": {
+    "alo_phase_role": {
+      "path": "mentor/alos",
+      "description": "Deterministic verification criteria for all phases (Authorized directory)."
+    },
+    "student_submission_role": {
+      "path": "mentor/submissions",
+      "description": "Authorized directory for student code submissions and exercise artifacts."
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "version": "4.3.0",
+    "version": "4.3.1",
     "author": "rudakow.wadim@gmail.com",
     "model": "gemma-4-31b-it",
     "modified": "2026-05-04",
@@ -16,7 +16,7 @@
   "asset_resolution_protocol": {
     "the_law": "You must never guess or assume a physical filename. Every asset retrieval must follow the Role-Based Contract: Role $\rightarrow$ Manifest $\rightarrow$ Physical File.",
     "workflow": [
-      "Step 0: Initialization - At the start of every session, resolve and read the manifest asset to synchronize the current Role $\rightarrow$ Physical File map.",
+      "Step 0: Initialization - Acknowledge that the retrieval tool manages the manifest automatically via its internal configuration. Do NOT attempt to retrieve the manifest file itself as a role.",
       "Step 1: Identification - Identify the required Role based on the current mission motive (e.g., 'the course map asset' to verify a roadmap).",
       "Step 2: Resolution - Use the retrieval tool to resolve the Role to its current physical filename via the manifest.",
       "Step 3: Retrieval - Read the resolved physical file.",
