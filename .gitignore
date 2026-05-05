@@ -1,6 +1,8 @@
+.ipynb_checkpoints/
+*/**/*.kate-swp
+
 mentors*/
 todo.md
-.ipynb_checkpoints/
 .aider*
 .qwen/
 
