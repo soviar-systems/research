@@ -56,6 +56,12 @@ All tracks employ a "Skeptical Mastery" approach to learning:
 - **Mastery Gating:** Progression is strictly gated by the completion of the current ALO.
 - **Validation Before Abstraction:** Raw implementation (e.g., NumPy) must be verified before introducing library abstractions (e.g., PyTorch).
 
+### Technical Enforcement
+Skeptical Mastery is not a probabilistic guideline, but a deterministic architectural constraint. It is enforced via the `mentor_generator` infrastructure:
+- **Role-Based Asset Manifests (mentor_generator: ADR-26012, ADR-26014):** The Mentor's access to verification criteria (ALOs) is governed by a strict manifest, preventing "vibe-based" grading or skipping of prerequisites.
+- **Instructional Decoupling (mentor_generator: ADR-26016):** Behavioral "Laws" are separated from operational "Blueprints," ensuring that the Mentor follows the exact verification protocol defined in the templates.
+- **Directive-Driven Control (mentor_generator: ADR-26013):** Tool-level guardrails use the `[DIRECTIVE]` pattern to force the Mentor to re-align with the authorized asset manifest upon any retrieval failure.
+
 ## 💻 Infrastructure & Environment
 
 ### Hardware Targets
